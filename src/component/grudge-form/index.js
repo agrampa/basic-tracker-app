@@ -4,19 +4,19 @@ class GrudgeForm extends React.Component {
   constructor(props) {
     super(props)
 
-    let title = props.grudge ? props.grudge.name : ''
-    let reason = props.grudge ? props.grudge.reason : ''
-
-    this.state = {title, reason}
+    this.state = {
+      title: '',
+      reason: ''
+    }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(e) {
+    let {name} = e.target
     this.setState({
-      title: e.target.value,
-      reason: e.target.value
+      [name]: e.target.value
     })
   }
 
@@ -38,7 +38,7 @@ class GrudgeForm extends React.Component {
         <input
           name='reason'
           type='text'
-          placeholder='What is the reason for this grudge?'
+          placeholder='Reason'
           value={this.state.reason}
           onChange={this.handleChange} />
         <button type='submit'>Hold On To A New Grudge</button>
