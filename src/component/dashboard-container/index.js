@@ -1,13 +1,14 @@
 import React from 'react'
 import uuid from 'uuid/v1'
 
+import GrudgeForm from '../grudge-form'
+import GrudgeList from '../grudge-list'
+
 class DashboardContainer extends React.Component {
   constructor(props) {
     super(props)
 
     this.grudgeCreate = this.grudgeCreate.bind(this)
-    this.grudgeUpdate = this.grudgeUpdate.bind(this)
-    this.grudgeForget = this.grudgeForget.bind(this)
   }
 
   grudgeCreate(grudge) {
@@ -15,30 +16,24 @@ class DashboardContainer extends React.Component {
 
     let {app} = this.props;
     app.setState(prevState => ({
-      grudges: prevState.grudges.contac([grudge]),
+      grudges: prevState.grudges.concat([grudge]),
     }))
   }
 
-  grudgeUpdate(grudge) {
-    let {app} = this.props
-    app.setState(prevState => {
-      grudges: prevState.grudges.map((item) => {
-        return item.id === grudge.id ? grudge : item
-      })
-    })
-  }
-
-  grudgeForget(grudge) {
-    let {app} = this.props
-    app.setState(prevState => {
-      grudges: prevState.grudges.filter((item) => {
-        return item.id !== grudge.id
-      })
-    })
-  }
-
   render() {
-    return <p> did it work?</p>
+    let {app} = this.props
+    let {grudges} = app.state
+
+    return(
+      <div className='dashboard-container'>
+      <p>Grudge Tracker</p>
+
+      <GrudgeForm handleSubmit={this.grudgeCreate} submitTitle='Add a New Grudge' />
+
+      <GrudgeList
+        grudges={grudges} />
+      </div>
+    )
   }
 }
 

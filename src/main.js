@@ -7,11 +7,27 @@ import DashboardContainer from './component/dashboard-container'
 class App extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      grudges: []
+    }
+
+    this.getApp = this.getApp.bind(this)
+  }
+
+  componentDidUpdate() {
+    console.log(':::STATE:::', this.state)
+  }
+
+  getApp() {
+    return{
+      state: this.state,
+      setState: this.setState.bind(this)
+    }
   }
 
   render() {
     return(
-      <DashboardContainer />
+      <DashboardContainer app={this.getApp()}/>
     )
   }
 
