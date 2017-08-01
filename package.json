@@ -9,7 +9,7 @@
     "build": "webpack",
     "watch": "webpack-dev-server --inline --hot",
     "heroku-postbuild": "webpack --progress",
-    "start": "node server.js",
+    "start": "node server.js"
   },
   "dependencies": {
     "babel-core": "^6.25.0",
